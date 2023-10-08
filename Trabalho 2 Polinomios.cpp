@@ -16,6 +16,55 @@ struct Polinomio
 };
 
 // Function to add two polynomials
+/*Polinomio somaPolinomios(const Polinomio& p1, const Polinomio& p2)
+{
+    Polinomio resultado;
+    int i = 0, j = 0;
+
+    while (i < p1.lista.size() && j < p2.lista.size())
+    {
+        if (p1.lista[i].expoente == p2.lista[j].expoente && p1.lista[i].incognita == p2.lista[j].incognita)
+        {
+            // Monomials have the same exponent and incognita, so add their coefficients
+            Monomio monomio;
+            monomio.coeficiente = p1.lista[i].coeficiente + p2.lista[j].coeficiente;
+            monomio.expoente = p1.lista[i].expoente;
+            monomio.incognita = p1.lista[i].incognita;
+            resultado.lista.push_back(monomio);
+            i++;
+            j++;
+        }
+        else if (p1.lista[i].expoente > p2.lista[j].expoente || (p1.lista[i].expoente == p2.lista[j].expoente && p1.lista[i].incognita > p2.lista[j].incognita))
+        {
+            // Add the monomial from p1 to the result
+            resultado.lista.push_back(p1.lista[i]);
+            i++;
+        }
+        else
+        {
+            // Add the monomial from p2 to the result
+            resultado.lista.push_back(p2.lista[j]);
+            j++;
+        }
+    }
+
+    // If there are remaining monomials in p1 or p2, add them to the result
+    while (i < p1.lista.size())
+    {
+        resultado.lista.push_back(p1.lista[i]);
+        i++;
+    }
+
+    while (j < p2.lista.size())
+    {
+        resultado.lista.push_back(p2.lista[j]);
+        j++;
+    }
+
+    return resultado;
+}
+*/
+
 Polinomio somaPolinomios(const Polinomio& p1, const Polinomio& p2)
 {
     Polinomio resultado;
@@ -63,6 +112,7 @@ Polinomio somaPolinomios(const Polinomio& p1, const Polinomio& p2)
 
     return resultado;
 }
+
 
 void imprimir(const Polinomio& p)
 {
