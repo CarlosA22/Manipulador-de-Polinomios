@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -12,8 +13,9 @@ struct Monomio
 
 struct Polinomio
 {
-	Monomio monomios;
 	Monomio listaMonomios[50];
+	int numMonomios;
+	float coeficienteConstante;
 };
 
 Monomio lerMonomio()
@@ -78,7 +80,7 @@ void imprimirMonomio(Monomio monomio)
 	cout << monomio.coeficiente << monomio.incognita << "^" << monomio.expoente << endl;
 }
 
-void imprimirPolinomio()
+/*void imprimirPolinomio()
 {
 	Polinomio polinomio;
 	for (int i = 0; i < polinomio.monomios.expoente; i++)
@@ -86,12 +88,24 @@ void imprimirPolinomio()
 		imprimirMonomio(polinomio.listaMonomios[i]);
 	}
 }
+*/
+
+void imprimirPolinomio(Polinomio polinomio)
+{
+	for (int i = 0; i < polinomio.numMonomios; i++)
+	{
+		imprimirMonomio(polinomio.listaMonomios[i]);
+	}
+
+	// Se desejar, você pode imprimir o coeficiente constante, se houver.
+	cout << "Coeficiente constante: " << polinomio.coeficienteConstante << endl;
+}
 
 int main()
 {
 	int opcao = 0;
 	int tam = 0;
-	Monomio* v = new Monomio[tam];
+	//Monomio* v = new Monomio[tam];
 
 
 	do
@@ -110,34 +124,61 @@ int main()
 
 		switch (opcao)
 		{
+			/*case 1:
+			{
+				system("cls");
+
+				cout << "Digite o quantos monomios que você quer adicionar: ";
+				cin >> tam;
+
+				for (int i = 0; i < tam; i++)
+				{
+					cout << "\nMonomio " << i + 1 << ": ";
+					v[i] = lerMonomio();
+					cout << endl;
+				}
+
+				for (int i = 0; i < tam; i++)
+				{
+					imprimirMonomio(v[i]);
+				}
+
+				/*for (int i = 0; i < TAM; i++)
+				{
+					cout << endl;
+					monomios[i] = lerMonomio();
+				}
+				break;
+
+				//Polinomio resultado = somaPolinomios(p1, p2);
+				//imprimirResultado(resultado);
+
+				break;
+			}
+			*/
 		case 1:
 		{
 			system("cls");
 
-			cout << "Digite o quantos monomios que você quer adicionar: ";
-			cin >> tam;
+			Polinomio polinomio; // Crie um novo polinômio
 
-			for (int i = 0; i < tam; i++)
+			cout << "Digite o número de monômios que você quer adicionar: ";
+			cin >> polinomio.numMonomios;
+
+			for (int i = 0; i < polinomio.numMonomios; i++)
 			{
-				cout << "\nMonomio " << i + 1 << ": ";
-				v[i] = lerMonomio();
-				cout << endl;
+				cout << "\nMonômio " << i + 1 << ": ";
+				polinomio.listaMonomios[i] = lerMonomio();
 			}
 
-			for (int i = 0; i < tam; i++)
-			{
-				imprimirMonomio(v[i]);
-			}
+			// Se desejar, você pode adicionar um termo constante ao polinômio.
+			cout << "Digite o coeficiente constante (ou 0 se não houver): ";
+			cin >> polinomio.coeficienteConstante;
 
-			/*for (int i = 0; i < TAM; i++)
-			{
-				cout << endl;
-				monomios[i] = lerMonomio();
-			}
-			break;
-			*/
-			//Polinomio resultado = somaPolinomios(p1, p2);
-			//imprimirResultado(resultado);
+			// Agora você tem um polinômio criado a partir dos monômios inseridos.
+			// Faça o que desejar com o polinômio, como imprimir ou realizar operações com ele.
+
+			imprimirPolinomio(polinomio);
 
 			break;
 		}
